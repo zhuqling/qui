@@ -125,7 +125,7 @@ notify.off('event1')
 
 例子：
 
-```
+```html
 <div class="form-group">
     <label for="" class="col-sm-2 control-label">货品属性</label>
     <div class="col-sm-5">
@@ -228,7 +228,7 @@ notify.off('event1')
 
 例子：
 
-```
+```html
 <form action="/kefus" method="POST" autocomplete="off" class="form-horizontal" data-bind="tableKefus" data-callback="loadData">
   <input type="hidden" name="id" value="{{ _id }}"/>
   <div class="modal-footer">
@@ -238,7 +238,7 @@ notify.off('event1')
 </form>
 ```
 
-```
+```html
 <form data-grant="freight_delete" style="display:inline-block;" action="/freights/{{ _id }}" method="DELETE" data-bind="tableFreights" data-callback="loadData" data-confirm="true" data-confirm-message="确认要删除该运费设置吗？"><input type="hidden" name="ids" value="{{ _id }}"/><button class="btn btn-danger">删除</button></form>
 ```
 
@@ -276,7 +276,7 @@ notify.off('event1')
 
 例子：
 
-```
+```html
 <div class="form-group">
     <label for="imgs" class="col-sm-2 control-label text-primary">图片</label>
     <div class="col-sm-10">
@@ -310,7 +310,7 @@ notify.off('event1')
 
 例子：
 
-```
+```html
 <a class="btn btn-xs btn-default" role="button" rel="popover" title="包裹进度" data-url="/api/packages/{{this}}/progress" data-url-template="orders/partials/progress"><span class="glyphicon glyphicon-tasks"></span></a>
 ```
 
@@ -323,7 +323,7 @@ notify.off('event1')
 
 例子：
 
-```
+```html
 <a data-grant="freight_edit" class="btn btn-default" href="hbs.freights/edit?target=dialog"><span class="glyphicon glyphicon-plus"></span>新增</a>
 ```
 
