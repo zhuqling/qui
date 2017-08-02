@@ -1,0 +1,25 @@
+{
+  "name": "snt-cms",
+  "version": "1.0.0",
+  "dependencies": {
+    "blueimp-md5": "*",
+    "bootstrap": "~3",
+    "bootstrap-contextmenu": "~0.3.3",
+    "bootstrap-social": "~4",
+    "eonasdan-bootstrap-datetimepicker": "~4.17.37",
+    "font-awesome": "~4",
+    "growl": "~1.2.5",
+    "handlebars-helper": "https://github.com/SparkartGroupInc/handlebars-helper.git#~0.0.12",
+    "jquery": "~2",
+    "jquery.scrollTo": "~2.1.1",
+    "leancloud-realtime": "~2.2.1",
+    "lodash": "~3",
+    "moment": "~2.10.6",
+    "node-uuid": "*",
+    "page": "*",
+    "query-string": "~1.0.0",
+    "require-handlebars-plugin": "~0.11.2",
+    "zeroclipboard": "~2.2.0"
+  },
+  "devDependencies": {}
+}

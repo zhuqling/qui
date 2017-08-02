@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>CMS</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" type="image/png" href="/favicon.png"/>
+		<link rel="stylesheet" href="/dest/css/common.min.css">
+	</head>
+	<body>
+		<div class="navbar navbar-default navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" style="margin-right: 25px;" href="/">CMS</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<ol class="breadcrumb">
+				<li><a href="/"><span class="glyphicon glyphicon-home"></span></a></li>
+				<li class="active">Dashboard</li>
+			</ol>
+			<div id="body"></div>
+		</div>
+		<div class="modal fade" id="dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="myModalLabel">对话框</h4>
+					</div>
+					<div class="modal-body">
+						<div class="error-body alert alert-danger" role="alert"></div>
+						<div class="dialog-body">...</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script id="navbar-tpl" type="text/template">
+		<ul class="nav navbar-nav">
+			{{#each menu}}
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					{{ menu.name }}
+					<b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					{{#each views}}
+					<li>
+						<a class="page-link" href="{{ url }}">{{ name }}</a>
+					</li>
+					{{/each}}
+				</ul>
+			</li>
+			{{/each}}
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					<span class="glyphicon glyphicon-user"></span> {{ user.name }}
+					<b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="users/change_me_password?target=dialog&title=修改密码"><span class="glyphicon glyphicon-lock"></span> 修改密码</a></li>
+					<li class="divider"></li>
+					<li><a id="logout" href="#"><span class="glyphicon glyphicon-off"></span> 注销</a></li>
+				</ul>
+			</li>
+		</ul>
+		</script>
+	
+		<script src="/dest/js/common.js"></script>
+		<script src="/dest/js/app.js"></script>
+		<script>handlebarshelper.help(Handlebars);handlerbar_extend.help(Handlebars)</script>
+		<script data-main="app" src="lib/require.js"></script>
+		<script>
+		var tplNavbar = Handlebars.compile($('#navbar-tpl').html())
+		$(function(){
+			var user = window.sessionStorage.user || window.localStorage.user;
+			if(user) user = JSON.parse(user);
+
+			if (!user) window.location.replace('/signin.html');
+
+			// 过滤可用功能
+			var menus = $.extend(true, {}, window.sys_menus) // deep copy
+			var _menus = _.filter(menus, function(menu){
+				menu.views = _.filter(menu.views, function(view){
+					return user.role.id === '1' || !!~user.role.permissions.indexOf(view.code)
+				})
+				return menu.views.length
+			})
+			
+			var html = tplNavbar({menu:_menus, user:user})
+			$('#navbar').html(html)
+
+			$(document).on('click', '#logout', function(){
+				delete window.sessionStorage.user
+				delete window.localStorage.user
+
+				$.get('/logout', function(res){
+				})
+				window.location.replace('/signin.html');
+			})
+		})
+		</script>
+	</body>
+</html>
