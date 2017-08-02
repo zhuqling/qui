@@ -123,6 +123,49 @@ notify.off('event1')
 
 - 可以默认传递data参数创建组件，可也可以在onready回调函数内，通过代码指定data后，调用load方法填充数据
 
+例子：
+
+```
+<div class="form-group">
+    <label for="" class="col-sm-2 control-label">货品属性</label>
+    <div class="col-sm-5">
+      <table id="colors" class="table table-condensed" rel="repeatable" data-row-container="#color_rows" data-row-template="#tpl_color_row" data-add-button="#add_color" data-remove-button=".del_color" data-row-class=".repeatable_color_row">
+        <thead>
+          <tr>
+            <th>颜色</th>
+            <th style="width:32px;"></th>
+          </tr>
+        </thead>
+        <tbody id="color_rows"></tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2">
+              <button id="add_color" class="btn btn-xs btn-default" type="button">增加</button>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <div class="col-sm-5">
+      <table id="sizes" class="table table-condensed" rel="repeatable" data-row-container="#size_rows" data-row-template="#tpl_size_row" data-add-button="#add_size" data-remove-button=".del_size" data-row-class=".repeatable_size_row">
+        <thead>
+          <tr>
+            <th>尺码</th>
+            <th style="width:32px;"></th>
+          </tr>
+        </thead>
+        <tbody id="size_rows"></tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2">
+              <button id="add_size" class="btn btn-xs btn-default" type="button">增加</button>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+</div>
+```
 
 ## SelectBox 下拉框
 
