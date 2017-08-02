@@ -104,7 +104,7 @@ notify.off('event1')
 </script>
 ```
 
-## Repeatable 重复栏目
+## Repeatable 动态增减栏目
 
 适用场景：输入元素可动态增加、减少
 
@@ -165,6 +165,19 @@ notify.off('event1')
       </table>
     </div>
 </div>
+
+<script type="text/template" id="tpl_color_row">
+<tr class="repeatable_color_row">
+  <td><input class="form-control input-sm" type="text" name="colors" autocomplete="off" value="{{ this.val }}"  /></td>
+  <td><button class="del_color btn btn-sm btn-default" type="button"><span class="glyphicon glyphicon-remove"></span></button></td>
+</tr>
+</script>
+<script type="text/template" id="tpl_size_row">
+<tr class="repeatable_size_row">
+  <td><input class="form-control input-sm" type="text" name="sizes" autocomplete="off" value="{{ this.val }}"  /></td>
+  <td><button class="del_size btn btn-sm btn-default" type="button"><span class="glyphicon glyphicon-remove"></span></button></td>
+</tr>
+</script>
 ```
 
 ## SelectBox 下拉框
